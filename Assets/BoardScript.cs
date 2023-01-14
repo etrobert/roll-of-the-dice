@@ -47,13 +47,19 @@ public class BoardScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            var oldPosition = emptyPosition.Right();
-            var movedDice = dice.GetValueOrDefault(oldPosition);
+            var movedDice = MoveDice(emptyPosition.Right());
             movedDice.GetComponent<DiceScript>().RotateLeft();
-            movedDice.transform.position += new Vector3(-diceOffset, 0, 0);
-            emptyPosition = oldPosition;
-            dice.Remove(oldPosition);
-            dice.Add(emptyPosition, movedDice);
         }
+    }
+
+    public GameObject MoveDice(BoardPosition oldPosition)
+    {
+        var movedDice = dice.GetValueOrDefault(oldPosition);
+        var movement = new BoardPosition(emptyPosition.X - oldPosition.X, emptyPosition.Y - oldPosition.Y);
+        movedDice.transform.position += new Vector3(movement.X, movement.Y, 0) * diceOffset;
+        dice.Remove(oldPosition);
+        dice.Add(emptyPosition, movedDice);
+        emptyPosition = oldPosition;
+        return movedDice;
     }
 }
