@@ -16,4 +16,9 @@ public readonly struct BoardPosition {
     {
         return !b1.Equals(b2);
     }
+
+    public BoardPosition Right()
+    {
+        return new BoardPosition(X + 1, Y);
+    }
 }

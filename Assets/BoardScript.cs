@@ -8,6 +8,8 @@ public class BoardScript : MonoBehaviour
 
     public float diceOffset = 2;
 
+    BoardPosition emptyPosition = new BoardPosition(0, 0);
+
     Dictionary<BoardPosition, GameObject> dice = new Dictionary<BoardPosition, GameObject>();
 
     // Start is called before the first frame update
@@ -15,7 +17,7 @@ public class BoardScript : MonoBehaviour
     {
         foreach (var boardPosition in GetBoardPositions(2))
         {
-            if (boardPosition == new BoardPosition(0, 0))
+            if (boardPosition == emptyPosition)
             {
                 continue;
             }
@@ -45,7 +47,13 @@ public class BoardScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            // myDice.GetComponent<DiceScript>().RotateLeft();
+            var oldPosition = emptyPosition.Right();
+            var movedDice = dice.GetValueOrDefault(oldPosition);
+            movedDice.GetComponent<DiceScript>().RotateLeft();
+            movedDice.transform.position += new Vector3(-diceOffset, 0, 0);
+            emptyPosition = oldPosition;
+            dice.Remove(oldPosition);
+            dice.Add(emptyPosition, movedDice);
         }
     }
 }
