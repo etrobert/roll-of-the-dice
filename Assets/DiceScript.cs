@@ -12,12 +12,22 @@ public class DiceScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        spriteRenderer.sprite = sprites[dicePosition.Top - 1];
+        UpdateSprite();
     }
 
     // Update is called once per frame
     void Update()
     {
 
+    }
+
+    void UpdateSprite()
+    {
+        spriteRenderer.sprite = sprites[dicePosition.Top - 1];
+    }
+
+    public void RotateLeft() {
+        dicePosition = dicePosition.RotateLeft();
+        UpdateSprite();
     }
 }
