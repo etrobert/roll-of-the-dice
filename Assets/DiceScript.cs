@@ -30,4 +30,19 @@ public class DiceScript : MonoBehaviour
         diceOrientation = diceOrientation.RotateLeft();
         UpdateSprite();
     }
+
+    public void RotateRight() {
+        diceOrientation = diceOrientation.RotateRight();
+        UpdateSprite();
+    }
+
+    public void RotateFront() {
+        diceOrientation = diceOrientation.RotateFront();
+        UpdateSprite();
+    }
+
+    public void RotateBack() {
+        diceOrientation = diceOrientation.RotateBack();
+        UpdateSprite();
+    }
 }

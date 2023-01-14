@@ -21,4 +21,19 @@ public readonly struct BoardPosition {
     {
         return new BoardPosition(X + 1, Y);
     }
+
+    public BoardPosition Left()
+    {
+        return new BoardPosition(X - 1, Y);
+    }
+
+    public BoardPosition Front()
+    {
+        return new BoardPosition(X, Y - 1);
+    }
+
+    public BoardPosition Back()
+    {
+        return new BoardPosition(X, Y + 1);
+    }
 }

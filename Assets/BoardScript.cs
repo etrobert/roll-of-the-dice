@@ -50,6 +50,21 @@ public class BoardScript : MonoBehaviour
             var movedDice = MoveDice(emptyPosition.Right());
             movedDice.GetComponent<DiceScript>().RotateLeft();
         }
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            var movedDice = MoveDice(emptyPosition.Left());
+            movedDice.GetComponent<DiceScript>().RotateRight();
+        }
+        else if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            var movedDice = MoveDice(emptyPosition.Front());
+            movedDice.GetComponent<DiceScript>().RotateBack();
+        }
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            var movedDice = MoveDice(emptyPosition.Back());
+            movedDice.GetComponent<DiceScript>().RotateFront();
+        }
     }
 
     public GameObject MoveDice(BoardPosition oldPosition)
