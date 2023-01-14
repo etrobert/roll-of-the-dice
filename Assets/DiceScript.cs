@@ -7,7 +7,7 @@ public class DiceScript : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public Sprite[] sprites;
 
-    DicePosition dicePosition = new DicePosition(1, 6, 3, 4, 2, 5);
+    DiceOrientation diceOrientation = new DiceOrientation(1, 6, 3, 4, 2, 5);
 
     // Start is called before the first frame update
     void Start()
@@ -23,11 +23,11 @@ public class DiceScript : MonoBehaviour
 
     void UpdateSprite()
     {
-        spriteRenderer.sprite = sprites[dicePosition.Top - 1];
+        spriteRenderer.sprite = sprites[diceOrientation.Top - 1];
     }
 
     public void RotateLeft() {
-        dicePosition = dicePosition.RotateLeft();
+        diceOrientation = diceOrientation.RotateLeft();
         UpdateSprite();
     }
 }
